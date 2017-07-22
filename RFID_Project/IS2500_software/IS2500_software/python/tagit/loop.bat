@@ -1,0 +1,1 @@
+FOR %%A IN (list) DO python s6350_tagit_transponder_details.py COM5
