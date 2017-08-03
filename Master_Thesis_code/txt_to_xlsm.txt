@@ -1,0 +1,27 @@
+ 
+Sub ConvertFiles()
+     
+    Dim FileName As String
+    Dim Path As String
+     
+    Application.DisplayAlerts = False
+    Application.EnableEvents = False
+    Application.ScreenUpdating = False
+     
+    Path = ThisWorkbook.Path
+    FileName = Dir(Path & "\*.txt")
+    
+    Do Until FileName = ""
+    Workbooks.OpenText FileName:=Path & "\" & FileName, DataType:=xlDelimited, Tab:=True
+    Workbooks.Open FileName:=Path & "\" & FileName
+    Cells.NumberFormat = "0.0000"
+    ActiveWorkbook.SaveAs FileName:=Path & "\" & Left(FileName, Len(FileName) - 3) & "xlsm",  fileformat:=52
+    ActiveWorkbook.Close
+    FileName = Dir()
+Loop
+    
+    Application.DisplayAlerts = True
+    Application.EnableEvents = True
+    Application.ScreenUpdating = True
+     
+End Sub

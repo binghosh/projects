@@ -1,0 +1,81 @@
+Sub LoopThroughFolder()
+
+Dim MyFile As String, Str As String, MyDir As String, Wb As Workbook
+Dim Rws As Long, Rng As Range
+Dim Lastrow As Long
+
+Set Wb = ThisWorkbook
+'change the address to suite
+MyDir = "C:\Users\GHBI\Documents\Thesis\Slopping_SOLID-Copy\" 'Your Directory
+MyFile = Dir(MyDir & "*.xls")    'Your excel file extension
+ChDir MyDir
+Application.ScreenUpdating = 0
+Application.DisplayAlerts = 0
+
+Do While MyFile <> ""
+    Workbooks.Open (MyFile)
+        Range("Z1").Value = "Slopping" 'New Column Name
+		Lastrow = Range("Z" & Rows.Count).End(xlUp).Row
+		Range("Z2") = "SOLID": Range("Z2:Z" & LastRow).FillDown
+        ActiveWorkbook.Save
+        ActiveWorkbook.Close True
+    MyFile = Dir()
+Loop
+
+End Sub
+
+
+
+Sub ConvertFiles()
+     
+    Dim FileName As String
+    Dim Path As String
+     
+    Application.DisplayAlerts = False
+    Application.EnableEvents = False
+    Application.ScreenUpdating = False
+     
+    Path = ThisWorkbook.Path
+    FileName = Dir(Path & "\*.xlsm")
+	Dim Lastrow As Long
+	Do Until FileName = ""
+    Workbooks.Open FileName:=Path & "\" & FileName
+    Cells.NumberFormat = "0.0000"
+    Range("Z1").Select
+    ActiveCell.FormulaR1C1 = "Slopping"
+    Range("Z2").Select
+    ActiveCell.FormulaR1C1 = "SOLID"
+	Lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+    Selection.AutoFill Destination:=Range("Z2:Z" & LastRow), Type:=xlFillDefault
+   
+    ActiveWorkbook.Save
+    ActiveWorkbook.Close
+    FileName = Dir()
+Loop
+    
+    Application.DisplayAlerts = True
+    Application.EnableEvents = True
+    Application.ScreenUpdating = True
+     
+End Sub
+
+
+
+
+
+Sub Range_End_Method()
+'Finds the last non-blank cell in a single row or column
+
+Dim lRow As Long
+Dim lCol As Long
+    
+    'Find the last non-blank cell in column A(1)
+    lRow = Cells(Rows.Count, 1).End(xlUp).Row
+    
+    'Find the last non-blank cell in row 1
+    lCol = Cells(1, Columns.Count).End(xlToLeft).Column
+    
+    MsgBox "Last Row: " & lRow & vbNewLine & _
+            "Last Column: " & lCol
+  
+End Sub

@@ -1,0 +1,50 @@
+Sub xx()
+Dim Lastrow As Long
+Range("Z1").Select
+    ActiveCell.FormulaR1C1 = "Slopping"
+    Range("Z2").Select
+    ActiveCell.FormulaR1C1 = "SOLID"
+    Lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+    MsgBox "Last Row: " & Lastrow
+    Range("Z2:Z" & Lastrow).Select
+    Selection.Formula = "SOLID"
+
+End Sub
+
+
+
+
+Sub ConvertFiles()
+     
+    Dim FileName As String
+    Dim Path As String
+     
+    Application.DisplayAlerts = False
+    Application.EnableEvents = False
+    Application.ScreenUpdating = False
+     
+    Path = ThisWorkbook.Path
+    FileName = Dir(Path & "\*.xlsm")
+	Dim Lastrow As Long
+	Do Until FileName = ""
+    Workbooks.Open FileName:=Path & "\" & FileName
+	
+	Range("Z1").Select
+    ActiveCell.FormulaR1C1 = "Slopping"
+    Range("Z2").Select
+    ActiveCell.FormulaR1C1 = "SOLID"
+    Lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+    'MsgBox "Last Row: " & Lastrow
+    Range("Z2:Z" & Lastrow).Select
+    Selection.Formula = "SOLID"
+	
+	 ActiveWorkbook.Save
+    ActiveWorkbook.Close
+    FileName = Dir()
+Loop
+    
+    Application.DisplayAlerts = True
+    Application.EnableEvents = True
+    Application.ScreenUpdating = True
+     
+End Sub

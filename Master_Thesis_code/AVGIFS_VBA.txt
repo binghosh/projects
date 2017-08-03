@@ -1,0 +1,211 @@
+INSERT INTO table2 (column1, column2, column3, ...)
+SELECT column1, column2, column3, ...
+FROM table1
+WHERE condition;
+
+
+
+
+CREATE TABLE table_name(
+   column1 datatype,
+   column2 datatype,
+   column3 datatype,
+   .....
+   columnN datatype,
+   PRIMARY KEY( one or more columns )
+);
+
+
+
+WHILE ( SELECT AVG(ListPrice) FROM dbo.DimProduct) < $300  
+BEGIN  
+    UPDATE dbo.DimProduct  
+        SET ListPrice = ListPrice * 2;  
+    SELECT MAX ( ListPrice) FROM dbo.DimProduct  
+    IF ( SELECT MAX (ListPrice) FROM dbo.DimProduct) > $500  
+        BREAK;  
+END  
+
+
+
+
+d1 <- sqldf(c("create table d1(X1, Y1)", 
+    "insert into d1 select X, Y from d2 where Y = 4"
+	"select * from d1"))
+	
+	
+	
+	
+	
+	
+=AVERAGEIFS(B2:B7, C2:C7, "Bellevue", D2:D7, ">2",E2:E7, "Yes")
+
+
+Sub foo2()
+Dim x As Workbook
+Dim y As Workbook
+
+'## Open both workbooks first:
+Set x = Workbooks.Open(" path to copying book ")
+Set y = Workbooks.Open(" path to destination book ")
+
+'Now, transfer values from x to y:
+y.Sheets("sheetname").Range("A1").Value = x.Sheets("name of copying sheet").Range("A1") 
+
+'Close x:
+x.Close
+
+End Sub
+
+
+
+
+y.Sheets("Soild").Range("A1").Value = x.Sheets("Sheet1").Range("A2") 
+
+
+
+Sub SetNumbers()
+    Dim i As Integer
+    i = 1
+    Do While i < 200
+        If Range("B" & i) <> "" Then
+            Range("A" & i) = i * 10
+        End If
+        i = i + 1
+    Loop
+End Sub
+
+
+Sub foo2()
+Dim x As Workbook
+Dim y As Workbook
+
+'## Open both workbooks first:
+Set x = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Solid.csv")
+Set y = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Solid_avg.csv")
+
+
+Dim i As Integer
+    i = 1
+
+for i = 2 to 8567
+
+
+y.Sheets("Sheet1").Range("A" & i) = x.Sheets("Soild").AVERAGEIFS(D2:D142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("B" & i) = x.Sheets("Soild").AVERAGEIFS(E2:E142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("C" & i) = x.Sheets("Soild").AVERAGEIFS(F2:F142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("D" & i) = x.Sheets("Soild").AVERAGEIFS(G2:G142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("E" & i) = x.Sheets("Soild").AVERAGEIFS(H2:H142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("F" & i) = x.Sheets("Soild").AVERAGEIFS(I2:I142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("G" & i) = x.Sheets("Soild").AVERAGEIFS(J2:J142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("H" & i) = x.Sheets("Soild").AVERAGEIFS(K2:K142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("I" & i) = x.Sheets("Soild").AVERAGEIFS(L2:L142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("J" & i) = x.Sheets("Soild").AVERAGEIFS(M2:M142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("K" & i) = x.Sheets("Soild").AVERAGEIFS(N2:N142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("L" & i) = x.Sheets("Soild").AVERAGEIFS(O2:O142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("M" & i) = x.Sheets("Soild").AVERAGEIFS(P2:P142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("N" & i) = x.Sheets("Soild").AVERAGEIFS(Q2:Q142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("O" & i) = x.Sheets("Soild").AVERAGEIFS(R2:R142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("P" & i) = x.Sheets("Soild").AVERAGEIFS(S2:S142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("Q" & i) = x.Sheets("Soild").AVERAGEIFS(T2:T142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("R" & i) = x.Sheets("Soild").AVERAGEIFS(U2:U142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("S" & i) = x.Sheets("Soild").AVERAGEIFS(V2:V142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("T" & i) = x.Sheets("Soild").AVERAGEIFS(W2:W142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("U" & i) = x.Sheets("Soild").AVERAGEIFS(X2:X142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("V" & i) = x.Sheets("Soild").AVERAGEIFS(Y2:Y142367, AB2:AB142367, "=i")
+y.Sheets("Sheet1").Range("W" & i) = x.Sheets("Soild").AVERAGEIFS(Z2:Z142367, AB2:AB142367, "=i")
+
+y.Save
+
+
+Next i
+
+
+y.Save
+
+End Sub
+
+
+
+
+
+
+Sub foo2()
+Dim x As Workbook
+Dim y As Workbook
+
+'## Open both workbooks first:
+Set x = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Solid.csv")
+Set y = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Solid_avg.csv")
+
+
+
+
+
+x.Sheets("Soild").AVERAGEIFS(D2:D142367, AB2:AB142367, "=1")
+
+y.Sheets("Sheet1").Range("A2) = x.Sheets("Soild").
+
+y.Save
+
+
+
+Sub foo2()
+Dim x As Workbook
+Dim y As Workbook
+
+Dim ws1         As Worksheet
+Dim ws2         As Worksheet
+Dim Lastrow As Long
+
+'## Open both workbooks first:
+Set x = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Solid.csv")
+Set y = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Solid_avg.csv")
+
+Set ws1 = x.Sheets("Solid")
+Set ws2 = y.Sheets("Solid_avg")
+Lastrow = ws1.Cells(Rows.Count, 1).End(xlUp).Row
+
+
+ws2.Range("A2").Formula = WorksheetFunction.AverageIfs(ws1.Range("D2:D" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=1")
+
+
+
+
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

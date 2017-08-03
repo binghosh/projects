@@ -1,0 +1,47 @@
+Sub LoopThroughFolder()
+
+Dim MyFile As String, Str As String, MyDir As String, wb As Workbook
+Dim Rws As Long, Rng As Range
+Dim Lastrow As Long
+
+
+'change the address to suite
+MyDir = "C:\Users\GHBI\Documents\Thesis\xxx\" 'Your Directory
+MyFile = Dir(MyDir & "*.xlsm")    'Your excel file extension
+ChDir MyDir
+Application.ScreenUpdating = 0
+Application.DisplayAlerts = 0
+
+Do While MyFile <> ""
+    Set wb = Workbooks.Open(MyFile)
+    Lastrow = Worksheets(1).Cells(Rows.Count, 1).End(xlUp).Row
+     
+        'Do your work here
+        '
+        Worksheets(1).Range("Z1").FormulaR1C1 = "Slopping"
+        Worksheets(1).Range("AA1").FormulaR1C1 = "Time"
+        'Worksheets(1).Range("Z2").FormulaR1C1 = "SOLID"
+         
+        Worksheets(1).Range("AA2:AA" & Lastrow).FormulaR1C1 = "=Row()-1"
+        Worksheets(1).Range("Z2:Z" & Lastrow).FormulaR1C1 = "SOLID"
+        
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        ActiveWorkbook.Save
+        ActiveWorkbook.Close True
+    MyFile = Dir()
+
+Loop
+
+Application.DisplayAlerts = True
+Application.EnableEvents = True
+Application.ScreenUpdating = True
+End Sub
+

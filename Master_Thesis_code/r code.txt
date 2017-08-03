@@ -1,0 +1,294 @@
+Pixel plot
+
+plot(X2016_10_01_55564$Index, X2016_10_01_55564$helle_Pixel_N, xlim = c(540, 740), ylim = c(0.0e+00, 1.0e+07),  col = "Blue", type = 'l')
+
+Sound plot
+
+plot(X2016_10_01_55566$Index, X2016_10_01_55566$Sound_unten_f1, col = "Blue", type = 'l')
+
+par(new=T)
+
+plot(X2016_10_01_55566$Index, X2016_10_01_55566$Sound_unten_f2, col = "Violet", type = 'l', axes = F)
+
+par(new=T)
+
+plot(X2016_10_01_55566$Index, X2016_10_01_55566$Sound_unten_f3, col = "Red", type = 'l', axes = F)
+
+
+Comma
+
+,
+
+Macro code
+
+Sub Multi_FindReplace()
+'PURPOSE: Find & Replace a list of text/values throughout entire workbook
+'SOURCE: www.TheSpreadsheetGuru.com/the-code-vault
+
+Dim sht As Worksheet
+Dim fndList As Variant
+Dim rplcList As Variant
+Dim x As Long
+
+Rows([1]).EntireRow.Delete
+
+Rows([1]).EntireRow.Delete
+
+fndList = Array(" ", ",")
+rplcList = Array("_", ".")
+
+'Loop through each item in Array lists
+  For x = LBound(fndList) To UBound(fndList)
+    'Loop through each worksheet in ActiveWorkbook
+      For Each sht In ActiveWorkbook.Worksheets
+        sht.Cells.Replace What:=fndList(x), Replacement:=rplcList(x), _
+          LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, _
+          SearchFormat:=False, ReplaceFormat:=False
+      Next sht
+  
+  Next x
+
+End Sub
+
+
+
+RowCopy
+
+
+Sub FirstRow()
+    Application.DisplayAlerts = False
+    Dim strFilename As String
+    Dim strPath As String
+    Dim wbMaster As Workbook
+    Dim wsMaster As Worksheet
+    Dim wbFiles As Workbook
+    Dim i As Integer
+
+    i = 2
+    Set wbMaster = ThisWorkbook
+    Set wsMaster = wbMaster.Sheets(2)
+    strPath = "C:\Users\GHBI\Documents\Thesis\2016-12-wh\"
+    strFilename = Dir(strPath & "*.txt")
+
+    Do While strFilename <> ""
+        Set wbFiles = Workbooks.Open(strPath & strFilename, False)
+        wbFiles.Sheets(1).Rows(RowIndex:=2).Copy
+        wsMaster.Cells(RowIndex:=i, ColumnIndex:=1).PasteSpecial Paste:=xlPasteAll
+        wbFiles.Close (False)
+        strFilename = Dir
+        i = i + 1
+    Loop
+    Application.DisplayAlerts = True
+End Sub
+
+
+
+List of filenames
+
+dir /b *.txt > dirlist.txt
+
+
+
+R Regresssion model code
+
+ model_svm <- svm(Slopping ~ Blaszeit_s + O2Menge_Nm + Sound_unten_f1 + Sound_unten_f2 + Sound_unten_f3 + Sound_oben_f1 + Sound_oben_f2 + Sound_oben_f3 + O2Rate_Nm_min + Abgasrate_Nm_h + Lanzenheight_m + Stellring_ + CO_Konzentration_ + Unterdruck_Stellring_kPa + helle_Pixel_N + Tor_SW + Tor_SO + Tor_N + Digital_4 + Digital_5 + Digital_6 + Schallpegel + Schlackenauswurf, final_data_copy)
+
+ staticmodel_svm <- svm(SLOPPING ~ ALTER_KONVERTER + LANZENALTER + ID_PROBE + C + SI + TI + V + EINGELEERTES_RE + EINLEERGEWICHT_SC_GESAMT + AG + AW + NS + FB + SN + RS + FS + RE + MV + KALKZUGABE + GEWICHTE_1 + GEWICHTE_2 + GEWICHTE_3 + GEWICHTE_4 + GEWICHTE_5 + GEWICHTE_6, staticdata)
+ 
+ 
+ 
+ 
+ 
+ Linear regression in R
+ 
+ # Load the data from the csv file
+dataDirectory <- "D:/DropBox/Dropbox/@Alex_Tutoriaux/"  
+data <- read.csv(paste(dataDirectory, 'regression.csv', sep=""), header = TRUE)
+
+# Plot the data 
+plot(data, pch=16)
+
+# Create a linear regression model
+model <- lm(Y ~ X, data)
+
+# Add the fitted line
+abline(model)
+
+dataDirectory <- "D:/DropBox/Dropbox/@Alex_Tutoriaux/" 
+data <- read.csv(paste(dataDirectory, 'regression.csv', sep=""), header = TRUE)
+
+plot(data, pch=16)
+model <- lm(Y ~ X , data)
+
+# make a prediction for each X 
+predictedY <- predict(model, data)
+
+# display the predictions
+points(data$X, predictedY, col = "blue", pch=4) 
+
+# This function will compute the RMSE
+rmse <- function(error)
+{
+  sqrt(mean(error^2))
+}
+
+error <- model$residuals  # same as data$Y - predictedY
+predictionRMSE <- rmse(error)   # 5.703778 
+
+
+library(e1071)
+
+dataDirectory <- "D:/DropBox/Dropbox/@Alex_Tutoriaux/" 
+data <- read.csv(paste(dataDirectory, 'regression.csv', sep=""), header = TRUE)
+
+rmse <- function(error)
+{
+  sqrt(mean(error^2))
+}
+
+
+plot(data, pch=16)
+ 
+
+# linear model ==============================================
+model <- lm(Y ~ X , data)
+  
+predictedY <- predict(model, data) 
+points(data$X, predictedY, col = "blue", pch=4)   
+
+
+error <- model$residuals  # same as data$Y - predictedY
+predictionRMSE <- rmse(error)   # 5.703778 
+# end of linear model =======================================
+
+
+plot(data, pch=16)
+
+# svr model ==============================================
+if(require(e1071)){ 
+  model <- svm(Y ~ X , data)
+  
+  predictedY <- predict(model, data)
+   
+  points(data$X, predictedY, col = "red", pch=4)
+  
+  # /!\ this time  svrModel$residuals  is not the same as data$Y - predictedY
+  # so we compute the error like this
+  error <- data$Y - predictedY  
+  svrPredictionRMSE <- rmse(error)  # 3.157061 
+} 
+
+# end of svr model =======================================
+
+
+
+library(e1071)
+
+dataDirectory <- "D:/DropBox/Dropbox/@Alex_Tutoriaux/" 
+data <- read.csv(paste(dataDirectory, 'regression.csv', sep=""), header = TRUE)
+
+rmse <- function(error)
+{
+  sqrt(mean(error^2))
+}
+
+
+plot(data)
+
+
+# linear model ==============================================
+model <- lm(Y ~ X , data)
+
+predictedY <- predict(model, data) 
+points(data$X, predictedY, col = "blue", pch=4)   
+
+
+error <- model$residuals  # same as data$Y - predictedY
+predictionRMSE <- rmse(error)   # 5.703778 
+# end of linear model =======================================
+
+
+plot(data)
+
+# svr model ==============================================
+if(require(e1071)){
+  
+  
+  model <- svm(Y ~ X , data)
+  
+  predictedY <- predict(model, data)
+  
+  points(data$X, predictedY, col = "red", pch=17)
+  
+  
+  error <- data$Y - predictedY  # /!\ this time  svrModel$residuals  is not the same as data$Y - predictedY
+  svrPredictionRMSE <- rmse(error)  # 3.157061 
+  
+    
+  tuneResult <- tune(svm, Y ~ X,  data = data, 
+                ranges = list(epsilon = seq(0,1,0.1), cost = 2^(2:9))
+  ) 
+  print(tuneResult) # best performance: MSE = 8.371412, RMSE = 2.89  epsilon  1e-04   cost 4
+   
+  # Draw the first tuning graph 
+  plot(tuneResult) 
+    
+  # On the first tuning graph, we can see that the graph is darker on the leftside when epsilon is small,
+  # so we adjust the tuning to go in this direction 
+  
+  # Draw the second tuning graph
+  tuneResult <- tune(svm, Y ~ X,  data = data, 
+                     ranges = list(epsilon = seq(0,0.2,0.01), cost = 2^(2:9))
+  ) 
+  
+  print(tuneResult) 
+  plot(tuneResult)
+  
+  plot(data, pch=16)
+  tunedModel <- tuneResult$best.model
+  tunedModelY <- predict(tunedModel, data) 
+  
+  points(data$X, predictedY, col = "red", pch=4)
+  lines(data$X, predictedY, col = "red", pch=4)
+  
+  points(data$X, tunedModelY, col = "blue", pch=4)
+  lines(data$X, tunedModelY, col = "blue", pch=4)
+  
+  error <- data$Y - tunedModelY  
+  
+  # this value can  be different because the best model is determined by cross-validation over randomly shuffled data 
+  tunedModelRMSE <- rmse(error)  # 2.219642 
+} 
+
+
+# end of svr model =======================================
+
+# transform to numeric =======================================
+
+transform(final_data_copy, Unterdruck_Stellring_kPa = as.numeric(Unterdruck_Stellring_kPa), 
+               Digital_5 = as.numeric(Digital_5),
+			   Digital_6 = as.numeric(Digital_6))
+
+			   
+# confusion matrix =======================================			   
+			   
+> caret::confusionMatrix(staticdata$SLOPPING[1:265], predictedstatic)	
+
+SVM with confusion matrix =======================================	
+
+staticdata_train <- read.csv(paste(staticdataDirectory, 'ConvC_train.csv', sep=""), header = TRUE)
+staticdata_test <- read.csv(paste(staticdataDirectory, 'ConvC_test.csv', sep=""), header = TRUE)	
+library(e1071)
+staticmodel_svm <- svm(SLOPPING ~ ALTER_KONVERTER + LANZENALTER + ID_PROBE + C + SI + TI + V + EINGELEERTES_RE + EINLEERGEWICHT_SC_GESAMT + AG + AW + NS + FB + SN + RS + FS + RE + MV + KALKZUGABE + GEWICHTE_1 + GEWICHTE_2 + GEWICHTE_3 + GEWICHTE_4 + GEWICHTE_5 + GEWICHTE_6, staticdata_train)	
+predictedstatic <- predict(staticmodel_svm, staticdata_test)   
+caret::confusionMatrix(staticdata_test$SLOPPING[1:265], predictedstatic)
+
+CHAID =======================================	
+
+library(foreign)
+library(Hmisc)
+library(CHAID)
+library(Rcmdr)
+ctrl <- chaid_control(minbucket = 100, minsplit = 100, alpha2=.05, alpha4 = .05)
+chaid_static <- chaid(SLOPPING ~ ALTER_KONVERTER + LANZENALTER + ID_PROBE + C + SI + TI + V + EINGELEERTES_RE + EINLEERGEWICHT_SC_GESAMT + AG + AW + NS + FB + SN + RS + FS + RE + MV + KALKZUGABE + GEWICHTE_1 + GEWICHTE_2 + GEWICHTE_3 + GEWICHTE_4 + GEWICHTE_5 + GEWICHTE_6, staticdata_train, control = ctrl)
+predictedstatic <- predict(chaid_static, staticdata_test)  

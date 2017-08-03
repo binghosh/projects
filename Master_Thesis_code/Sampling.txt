@@ -1,0 +1,88 @@
+Sub foox()
+Dim x As Workbook
+Dim y As Workbook
+Dim FoundCell As Excel.Range
+
+Dim ws1         As Worksheet
+Dim ws2         As Worksheet
+Dim Lastrow As Long
+Dim i As Integer
+Dim z As Integer
+'i = 2
+
+Dim j As Integer
+j = 1
+
+Dim OpenForms
+
+'## Open both workbooks first:
+Set x = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Data\Final_Data_Copy.csv")
+Set y = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Data\Testing_2.csv")
+
+Set ws1 = x.Sheets("Final_Data_Copy")
+Set ws2 = y.Sheets("Testing_2")
+Lastrow = ws2.Cells(Rows.Count, 1).End(xlUp).Row
+
+'x.Close
+'y.Close
+
+Application.ScreenUpdating = 0
+Application.DisplayAlerts = 0
+
+'ws2.Range("A2").Formula = WorksheetFunction.AverageIfs(ws1.Range("D2:D" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=1")
+
+For j = 251 To 500
+
+    Set FoundCell = ws1.Range("AB2:AB895428").Find(j)
+    
+    i = 1
+
+    For i = 1 To 40
+    
+    z = (j - 250 - 1) * 40 + i
+    
+        ws2.Range("AD" & z).Value = FoundCell.Row + 40
+
+        ws1.Rows(FoundCell.Row + 40 + i - 1).Copy ws2.Rows(z)
+        
+        
+        'ws2.Range("A" & i).Value = FoundCell.Row
+        
+        
+        
+
+    Next i
+    
+    'Set FoundCell = ws1.Range("AB2:AB895428").Find(2)
+    
+    'i = 2
+
+    'For i = 2 To 41
+    
+    '   ws2.Range("AD" & 40 + i).Value = FoundCell.Row
+
+        'ws1.Rows(FoundCell.Row + i - 2).Copy ws2.Rows(Lastrow + i)
+        
+        
+        'ws2.Range("A" & i).Value = FoundCell.Row
+        
+        
+        
+
+   ' Next i
+    
+     
+    
+Next j
+
+
+'y.Save
+
+
+Application.DisplayAlerts = True
+Application.EnableEvents = True
+Application.ScreenUpdating = True
+
+End Sub
+
+

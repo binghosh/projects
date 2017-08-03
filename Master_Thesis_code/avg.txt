@@ -1,0 +1,84 @@
+Sub foo2()
+Dim x As Workbook
+Dim y As Workbook
+
+Dim ws1         As Worksheet
+Dim ws2         As Worksheet
+Dim Lastrow As Long
+Dim i As Integer
+i = 2
+
+'Dim j As Integer
+'j = i - 1
+
+Dim OpenForms
+
+'## Open both workbooks first:
+Set x = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Solid.csv")
+Set y = Workbooks.Open("C:\Users\GHBI\Documents\Thesis\Solid_avg.csv")
+
+Set ws1 = x.Sheets("Solid")
+Set ws2 = y.Sheets("Solid_avg")
+Lastrow = ws1.Cells(Rows.Count, 1).End(xlUp).Row
+
+'x.Close
+'y.Close
+
+Application.ScreenUpdating = 0
+Application.DisplayAlerts = 0
+
+'ws2.Range("A2").Formula = WorksheetFunction.AverageIfs(ws1.Range("D2:D" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=1")
+
+For i = 2 To 8567
+
+ws2.Range("A" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("D2:D" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("B" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("E2:E" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("C" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("F2:F" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("D" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("G2:G" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("E" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("H2:H" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("F" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("I2:I" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("G" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("J2:J" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("H" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("K2:K" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("I" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("L2:L" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("J" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("M2:M" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("K" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("N2:N" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("L" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("O2:O" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("M" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("P2:P" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("N" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("Q2:Q" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("O" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("R2:R" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("P" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("S2:S" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("Q" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("T2:T" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("R" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("U2:U" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("S" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("V2:V" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("T" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("W2:W" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("U" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("X2:X" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("V" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("Y2:Y" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("W" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("Z2:Z" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+ws2.Range("X" & i).Formula = WorksheetFunction.AverageIfs(ws1.Range("AB2:AB" & Lastrow), ws1.Range("AB2:AB" & Lastrow), "=" & i - 1)
+
+'y.Sheets("Sheet1").Range("A2").Formula = x.Sheets("Solid").WorksheetFunction.AverageIfs(Range("D2:D142367"), Range("AB2:AB142367"), "=1")
+
+
+y.Save
+
+
+        If i Mod 1000 = 0 Then     ' If loop has repeated 1000 times.
+        OpenForms = DoEvents    ' Yield to operating system.
+    End If
+
+
+
+
+
+Next i
+
+
+
+y.Save
+
+
+Application.DisplayAlerts = True
+Application.EnableEvents = True
+Application.ScreenUpdating = True
+
+End Sub
